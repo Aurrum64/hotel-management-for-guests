@@ -40,12 +40,21 @@ const About = () => {
       <div className="col-span-2">
         <Image
           src={about1}
+          quality={80}
+          className="object-cover"
+          placeholder="blur"
           alt="Family sitting around a fire pit in front of cabin"
         />
       </div>
 
       <div className="col-span-2">
-        <Image src={about2} alt="Family that manages The Wild Oasis" />
+        <Image
+          src={about2}
+          quality={80}
+          className="object-cover"
+          placeholder="blur"
+          alt="Family that manages The Wild Oasis"
+        />
       </div>
 
       <div className="col-span-3">

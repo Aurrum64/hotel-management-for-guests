@@ -29,7 +29,7 @@ export default function RootLayout({
       >
         <Header />
         <div className="flex-1 px-8 py-12">
-          <main className="mx-auto max-w-3xl">{children}</main>
+          <main className="mx-auto max-w-7xl">{children}</main>
         </div>
       </body>
     </html>
