@@ -1,11 +1,12 @@
 import CabinCard from "../_components/cabin-card";
+import { getCabins } from "../_lib/data-service";
 
 export const metadata = {
   title: "Cabins",
 };
 
-const Cabins = () => {
-  const cabins: any = [];
+export default async function Cabins() {
+  const cabins: any = await getCabins();
 
   return (
     <div>
@@ -30,6 +31,4 @@ const Cabins = () => {
       )}
     </div>
   );
-};
-
-export default Cabins;
+}
