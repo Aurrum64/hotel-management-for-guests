@@ -96,9 +96,10 @@ export async function getBookings(guestId: string) {
   return data;
 }
 
-export async function getBookedDatesByCabinId(cabinId: string) {
+/* export async function getBookedDatesByCabinId(cabinId: string) {
   let today = new Date();
   today.setUTCHours(0, 0, 0, 0);
+  
   today = today.toISOString();
 
   // Getting all bookings
@@ -124,7 +125,7 @@ export async function getBookedDatesByCabinId(cabinId: string) {
     .flat();
 
   return bookedDates;
-}
+} */
 
 export async function getSettings() {
   const { data, error } = await supabase.from("settings").select("*").single();
@@ -152,7 +153,7 @@ export async function getCountries() {
 /////////////
 // CREATE
 
-export async function createGuest(newGuest) {
+export async function createGuest(newGuest: any) {
   const { data, error } = await supabase.from("guests").insert([newGuest]);
 
   if (error) {
@@ -163,7 +164,7 @@ export async function createGuest(newGuest) {
   return data;
 }
 
-export async function createBooking(newBooking) {
+export async function createBooking(newBooking: any) {
   const { data, error } = await supabase
     .from("bookings")
     .insert([newBooking])
@@ -183,7 +184,7 @@ export async function createBooking(newBooking) {
 // UPDATE
 
 // The updatedFields is an object which should ONLY contain the updated data
-export async function updateGuest(id, updatedFields) {
+export async function updateGuest(id: any, updatedFields: any) {
   const { data, error } = await supabase
     .from("guests")
     .update(updatedFields)
@@ -198,7 +199,7 @@ export async function updateGuest(id, updatedFields) {
   return data;
 }
 
-export async function updateBooking(id, updatedFields) {
+export async function updateBooking(id: any, updatedFields: any) {
   const { data, error } = await supabase
     .from("bookings")
     .update(updatedFields)
