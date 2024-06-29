@@ -13,7 +13,7 @@ export async function getCabin(id: string) {
     .single();
 
   // For testing
-  // await new Promise((res) => setTimeout(res, 1000));
+  await new Promise((res) => setTimeout(res, 2000));
 
   if (error) {
     console.error(error);
@@ -96,18 +96,19 @@ export async function getBookings(guestId: string) {
   return data;
 }
 
-/* export async function getBookedDatesByCabinId(cabinId: string) {
+export async function getBookedDatesByCabinId(cabinId: string) {
   let today = new Date();
   today.setUTCHours(0, 0, 0, 0);
-  
+
+  // @ts-ignore
   today = today.toISOString();
 
   // Getting all bookings
   const { data, error } = await supabase
     .from("bookings")
     .select("*")
-    .eq("cabinId", cabinId)
-    .or(`startDate.gte.${today},status.eq.checked-in`);
+    .eq("cabin_id", cabinId)
+    .or(`start_date.gte.${today},status.eq.checked-in`);
 
   if (error) {
     console.error(error);
@@ -116,7 +117,7 @@ export async function getBookings(guestId: string) {
 
   // Converting to actual dates to be displayed in the date picker
   const bookedDates = data
-    .map((booking) => {
+    .map((booking: any) => {
       return eachDayOfInterval({
         start: new Date(booking.startDate),
         end: new Date(booking.endDate),
@@ -125,10 +126,12 @@ export async function getBookings(guestId: string) {
     .flat();
 
   return bookedDates;
-} */
+}
 
 export async function getSettings() {
   const { data, error } = await supabase.from("settings").select("*").single();
+
+  await new Promise((res) => setTimeout(res, 2000));
 
   if (error) {
     console.error(error);

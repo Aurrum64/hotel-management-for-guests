@@ -1,7 +1,10 @@
+import Reservation from "@/app/_components/reservation";
+import Spinner from "@/app/_components/spinner";
 import TextExpander from "@/app/_components/text-expander";
 import { getCabin, getCabins } from "@/app/_lib/data-service";
 import { EyeSlashIcon, MapPinIcon, UsersIcon } from "@heroicons/react/24/solid";
 import Image from "next/image";
+import { Suspense } from "react";
 
 export async function generateMetadata({ params }: { params: any }) {
   const { name } = await getCabin(params.cabinId);
@@ -72,9 +75,12 @@ export default async function CabinPage({ params }: { params: any }) {
 
       <div>
         <h2 className="text-center text-5xl font-semibold">
-          Reserve today. Pay on arrival.
+          {`Reserve ${name} today. Pay on arrival.`}
         </h2>
       </div>
+      <Suspense fallback={<Spinner />}>
+        <Reservation cabin={cabin} />
+      </Suspense>
     </div>
   );
 }
